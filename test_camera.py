@@ -13,9 +13,9 @@ import os
 import torch.nn.functional as F
 
 parser = argparse.ArgumentParser(description='human matting')
-parser.add_argument('--model', default='/content/model_obj.pth', help='preTrained model')
+# parser.add_argument('--model', default='/content/model_obj.pth', help='preTrained model')
 parser.add_argument('--size', type=int, default=256, help='input size')
-parser.add_argument('--image_path', default = '/content/clip_img/1803151818/clip_00000000/1803151818-00000007.jpg' ,help='Input Image')
+# parser.add_argument('--image_path', default = '/content/clip_img/1803151818/clip_00000000/1803151818-00000007.jpg' ,help='Input Image')
 parser.add_argument('--without_gpu', action='store_true', default=False, help='no use gpu')
 
 args = parser.parse_args()
@@ -40,11 +40,12 @@ else:
 #################################
 #---------------
 def load_model(args):
-    print('Loading model from {}...'.format(args.model))
+    model_name = '/content/model_obj.pth'
+    print('Loading model from {}...'.format(model_name))
     if args.without_gpu:
-        myModel = torch.load(args.model, map_location=lambda storage, loc: storage)
+        myModel = torch.load(model_name, map_location=lambda storage, loc: storage)
     else:
-        myModel = torch.load(args.model)
+        myModel = torch.load(model_name)
 
     myModel.eval()
     myModel.to(device)
@@ -102,7 +103,8 @@ def seg_process(args, image, net):
 
 
 def camera_seg(args, net):
-    frame = cv2.cvtColor(imgcv2.imread(args.image_path), cv2.COLOR_BGR2RGB)
+    img_path = '/content/clip_img/1803151818/clip_00000000/1803151818-00000007.jpg'
+    frame = cv2.cvtColor(imgcv2.imread(image_path), cv2.COLOR_BGR2RGB)
     frame_seg = seg_process(args, frame, net)
     
 
