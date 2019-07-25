@@ -13,9 +13,9 @@ import os
 import torch.nn.functional as F
 
 parser = argparse.ArgumentParser(description='human matting')
-parser.add_argument('--model', default='./', help='preTrained model')
+parser.add_argument('--model', default='/content/model_obj.pth', help='preTrained model')
 parser.add_argument('--size', type=int, default=256, help='input size')
-parser.add_argument('--image_path', type=str, help='Input Image')
+parser.add_argument('--image_path', default = '/content/clip_img/1803151818/clip_00000000/1803151818-00000007.jpg' ,help='Input Image')
 parser.add_argument('--without_gpu', action='store_true', default=False, help='no use gpu')
 
 args = parser.parse_args()
