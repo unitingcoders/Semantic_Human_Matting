@@ -15,6 +15,7 @@ import torch.nn.functional as F
 parser = argparse.ArgumentParser(description='human matting')
 parser.add_argument('--model', default='./', help='preTrained model')
 parser.add_argument('--size', type=int, default=256, help='input size')
+parser.add_argument('--image_path', type=str, help='Input Image')
 parser.add_argument('--without_gpu', action='store_true', default=False, help='no use gpu')
 
 args = parser.parse_args()
@@ -101,22 +102,25 @@ def seg_process(args, image, net):
 
 
 def camera_seg(args, net):
+    frame = cv2.cvtColor(imgcv2.imread(args.image_path), cv2.COLOR_BGR2RGB)
+    frame_seg = seg_process(args, frame, net)
+    
 
-    videoCapture = cv2.VideoCapture(0)
+#     videoCapture = cv2.VideoCapture(0)
 
-    while(1):
-        # get a frame
-        ret, frame = videoCapture.read()
-        frame = cv2.flip(frame,1)
-        frame_seg = seg_process(args, frame, net)
+#     while(1):
+#         # get a frame
+#         ret, frame = videoCapture.read()
+#         frame = cv2.flip(frame,1)
+#         frame_seg = seg_process(args, frame, net)
 
 
-        # show a frame
-        cv2.imshow("capture", frame_seg)
+#         # show a frame
+#         cv2.imshow("capture", frame_seg)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    videoCapture.release()
+#         if cv2.waitKey(1) & 0xFF == ord('q'):
+#             break
+#     videoCapture.release()
 
 def main(args):
 
