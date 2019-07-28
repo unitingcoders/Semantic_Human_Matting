@@ -16,6 +16,7 @@ import os
 from data import dataset
 from model import network
 import torch.nn.functional as F
+from tqdm import tqdm
 
 
 def get_args():
@@ -206,7 +207,7 @@ def main():
         start_epoch, model = trainlog.load_model(model) 
 
     model.train() 
-    for epoch in range(start_epoch, args.nEpochs+1):
+    for epoch in tqdm(range(start_epoch, args.nEpochs+1)):
 
         loss_ = 0
         L_alpha_ = 0
