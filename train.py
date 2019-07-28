@@ -217,7 +217,7 @@ def main():
             lr = set_lr(args, epoch, optimizer)
 
         t0 = time.time()
-        for i, sample_batched in tqdm(enumerate(trainloader)):
+        for i, sample_batched in enumerate(tqdm(trainloader)):
 
             img, trimap_gt, alpha_gt = sample_batched['image'], sample_batched['trimap'], sample_batched['alpha']
             img, trimap_gt, alpha_gt = img.to(device), trimap_gt.to(device), alpha_gt.to(device)
