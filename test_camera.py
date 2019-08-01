@@ -104,7 +104,7 @@ def seg_process(args, image, net):
 
 def camera_seg(args, net):
     img_path = args.image_path
-    frame = cv2.cvtColor(imgcv2.imread(image_path), cv2.COLOR_BGR2RGB)
+    frame = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
     frame_seg = seg_process(args, frame, net)
     cv2.imwrite("op.png", cv2.cvtColor(frame_seg, cv2.COLOR_BGR2RGB))
     
