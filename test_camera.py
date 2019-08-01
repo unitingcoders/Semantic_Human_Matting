@@ -94,7 +94,7 @@ def seg_process(args, image, net):
     # fg[fg>255] = 255
     # fg = fg.astype(np.uint8)
     # out = cv2.addWeighted(fg, 0.7, bg, 0.3, 0)
-    out = fg + bg
+    out = fg #+ bg
     out[out<0] = 0
     out[out>255] = 255
     out = out.astype(np.uint8)
