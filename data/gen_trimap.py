@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import argparse
+from tqdm import tqdm
 
 def get_args():
     parser = argparse.ArgumentParser(description='Trimap')
@@ -58,7 +59,7 @@ def main():
     f = open(args.list)
     names = f.readlines()
     print("Images Count: {}".format(len(names)))
-    for name in names:
+    for name in tqdm(names):
         msk_name = args.mskDir + "/" + name.strip()[:-4] + ".png"
         print(msk_name)
         trimap_name = args.saveDir + "/" + name.strip()[:-4] + ".png"
