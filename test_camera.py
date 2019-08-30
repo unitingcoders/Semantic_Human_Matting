@@ -13,7 +13,7 @@ import os
 import torch.nn.functional as F
 
 parser = argparse.ArgumentParser(description='human matting')
-parser.add_argument('--model', default=',/ckpt/human_matting/model/model_obj.pth', help='preTrained model')
+parser.add_argument('--model', default='./ckpt/human_matting/model/model_obj.pth', help='preTrained model')
 parser.add_argument('--size', type=int, default=256, help='input size')
 parser.add_argument('--image_path', default = './test.jpg' ,help='Input Image')
 parser.add_argument('--without_gpu', action='store_true', default=False, help='no use gpu')
